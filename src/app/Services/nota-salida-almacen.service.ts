@@ -39,7 +39,7 @@ export class NotaSalidaAlmacenService {
   }
 
   obtenerDetalle(id: number): Observable<any> {
-    const url = `${this.url}/ConsultarPorId`;
+    const url = `${this.url}/ConsultarPorIdx`;
 
     const body: any = {
       NotaSalidaAlmacenId: id

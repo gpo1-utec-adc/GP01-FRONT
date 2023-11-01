@@ -8,10 +8,10 @@ import { HROUTES } from '../horizontal-menu/navigation-routes.config';
 import { Router } from "@angular/router";
 import { customAnimations } from "../animations/custom-animations";
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { ConfigService } from '../services/config.service';
+import { ConfigService } from '../Services/config.service';
 import { Subscription } from 'rxjs';
-import { LayoutService } from '../services/layout.service';
-import { ILogin } from '../../services/models/login';
+import { LayoutService } from '../Services/layout.service';
+import { ILogin } from '../../Services/models/login';
 
 @Component({
   selector: "app-sidebar",

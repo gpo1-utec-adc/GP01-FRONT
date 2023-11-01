@@ -1,8 +1,8 @@
 import { Directive, HostListener, ChangeDetectorRef, OnInit, OnDestroy, HostBinding, Input, AfterViewInit } from '@angular/core';
 import { SidebarLinkDirective } from './sidebar-link.directive';
 import { Subscription } from 'rxjs';
-import { ConfigService } from '../services/config.service';
-import { LayoutService } from '../services/layout.service';
+import { ConfigService } from '../Services/config.service';
+import { LayoutService } from '../Services/layout.service';
 import { Router } from '@angular/router';
 import { match } from 'assert';
 

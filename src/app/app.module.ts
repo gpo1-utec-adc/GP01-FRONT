@@ -25,19 +25,19 @@ import { SharedModule } from "./shared/shared.module";
 import { AppComponent } from "./app.component";
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
 import { FullLayoutComponent } from "./layouts/full/full-layout.component";
-import { AuthService } from "./services/auth.service";
-import { MaestroService } from "./services/maestro.service";
-import { MaestroUtil } from "./services/util/maestro-util";
-import { AlertUtil } from "./services/util/alert-util";
-import { DateUtil } from "./services/util/date-util";
-//import { AcopioService, FiltrosMateriaPrima, FiltrosProveedor } from "./services/acopio.service";
-import { NotaIngresoAlmacenService } from "./services/nota-ingreso-almacen.service";
+import { AuthService } from "./Services/auth.service";
+import { MaestroService } from "./Services/maestro.service";
+import { MaestroUtil } from "./Services/util/maestro-util";
+import { AlertUtil } from "./Services/util/alert-util";
+import { DateUtil } from "./Services/util/date-util";
+//import { AcopioService, FiltrosMateriaPrima, FiltrosProveedor } from "./Services/acopio.service";
+import { NotaIngresoAlmacenService } from "./Services/nota-ingreso-almacen.service";
 import{NotaIngresoProductoTerminadoAlmacenPlantaService}from "./Services/nota-ingreso-producto.service";
 
 
 import { AuthGuard } from "./shared/auth/auth-guard.service";
-import { WINDOW_PROVIDERS } from './shared/services/window.service';
-//import { NotaCompraService } from './services/nota-compra.service';
+import { WINDOW_PROVIDERS } from './shared/Services/window.service';
+//import { NotaCompraService } from './Services/nota-compra.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ErrorHandling } from '../shared/util/error-handling';
 import { data } from '../shared/data/smart-data-table';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { ILogin } from '../services/models/login';
+import { ILogin } from '../Services/models/login';
 
 @Injectable()
 export class MaestroService {

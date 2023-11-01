@@ -9,13 +9,13 @@ import {
   ChangeDetectorRef,
   HostListener
 } from "@angular/core";
-import { ConfigService } from "../../../app/shared/services/config.service";
+import { ConfigService } from "../../../app/shared/Services/config.service";
 import { DOCUMENT } from "@angular/common";
 import { Subscription } from "rxjs";
-import { CustomizerService } from '../../../app/shared/services/customizer.service';
+import { CustomizerService } from '../../../app/shared/Services/customizer.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { LayoutService } from '../../../app/shared/services/layout.service';
-import { WINDOW } from '../../../app/shared/services/window.service';
+import { LayoutService } from '../../../app/shared/Services/layout.service';
+import { WINDOW } from '../../../app/shared/Services/window.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 

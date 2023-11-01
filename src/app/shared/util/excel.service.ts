@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Excel from 'exceljs/dist/exceljs.min.js';
 import * as FileSaver from 'file-saver';
-import { HeaderExcel } from '../../services/models/headerexcel.model';
+import { HeaderExcel } from '../../Services/models/headerexcel.model';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = 'xlsx';

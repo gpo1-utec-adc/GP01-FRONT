@@ -4,14 +4,14 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import swal from 'sweetalert2';
 import { Router } from "@angular/router"
-import { ConciliacionService } from '../../../../../services/conciliacion.service';
-import { MaestroUtil } from '../../../../../services/util/maestro-util';
-import { DateUtil } from '../../../../../services/util/date-util';
-import { AlertUtil } from '../../../../../services/util/alert-util';
-import { NotaSalidaAlmacenService } from '../../../../../services/nota-salida-almacen.service';
-import { HeaderExcel } from '../../../../../services/models/headerexcel.model';
+import { ConciliacionService } from '../../../../../Services/conciliacion.service';
+import { MaestroUtil } from '../../../../../Services/util/maestro-util';
+import { DateUtil } from '../../../../../Services/util/date-util';
+import { AlertUtil } from '../../../../../Services/util/alert-util';
+import { NotaSalidaAlmacenService } from '../../../../../Services/nota-salida-almacen.service';
+import { HeaderExcel } from '../../../../../Services/models/headerexcel.model';
 import { ExcelService } from '../../../../../shared/util/excel.service';
-import {AuthService} from './../../../../../services/auth.service';
+import {AuthService} from './../../../../../Services/auth.service';
 import { number } from 'ngx-custom-validators/src/app/number/validator';
 
 @Component({

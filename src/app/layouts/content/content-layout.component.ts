@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, Inject, Renderer2, ViewChild, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { ConfigService } from '../../../app/shared/services/config.service';
+import { ConfigService } from '../../../app/shared/Services/config.service';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { CustomizerService } from '../../../app/shared/services/customizer.service';
+import { CustomizerService } from '../../../app/shared/Services/customizer.service';
 //import { TranslateService } from '@ngx-translate/core';
 
 @Component({

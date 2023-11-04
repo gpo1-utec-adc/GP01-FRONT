@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from '../../../Services/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ILogin } from '../../../Services/models/login';
 
 @Component({
   selector: 'app-forgortPass',
@@ -12,7 +10,7 @@ import { ILogin } from '../../../Services/models/login';
 })
 export class ForgotPasswordComponent {
 
-  loginModel: ILogin;
+  //loginModel: ILogin;
   loginFormSubmitted = false;
   isLoginFailed = false;
   errorGeneral: any = { isError: true, errorMessage: '' };
@@ -22,7 +20,7 @@ export class ForgotPasswordComponent {
     password: new FormControl('',[Validators.required])
   });
 
-  constructor(private router: Router, private authService: AuthService,
+  constructor(private router: Router, 
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
   }
@@ -47,7 +45,7 @@ export class ForgotPasswordComponent {
         fullScreen: true
       });
 
-    this.authService.signinUser(this.loginForm2.value.username, this.loginForm2.value.password)
+    /**this.authService.signinUser(this.loginForm2.value.username, this.loginForm2.value.password)
       .subscribe(res => {
         this.spinner.hide();
         console.log(res);
@@ -69,7 +67,7 @@ export class ForgotPasswordComponent {
           this.spinner.hide();
           console.error(err);
         }
-      );
+      );**/
 
   }
 

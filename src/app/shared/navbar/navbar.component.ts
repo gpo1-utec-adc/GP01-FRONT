@@ -4,7 +4,6 @@ import { LayoutService } from '../services/layout.service';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 import { DOCUMENT } from '@angular/common';
-import { CustomizerService } from '../services/customizer.service';
 import { FormControl } from '@angular/forms';
 import { LISTITEMS } from '../data/template-search';
 import { Router } from '@angular/router';

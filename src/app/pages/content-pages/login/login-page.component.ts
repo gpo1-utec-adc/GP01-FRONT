@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from '../../../Services/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ILogin } from '../../../Services/models/login';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +11,7 @@ import { ILogin } from '../../../Services/models/login';
 
 export class LoginPageComponent {
 
-  loginModel: ILogin;
+  //loginModel: ILogin;
   loginFormSubmitted = true;
   isLoginFailed = false;
   errorGeneral: any = { isError: true, errorMessage: '' };
@@ -24,7 +22,7 @@ export class LoginPageComponent {
     rememberMe: new FormControl(true)
   });
 
-  constructor(private router: Router, private authService: AuthService,
+  constructor(private router: Router, //private authService: AuthService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {
   }

@@ -2,17 +2,13 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
-import swal from 'sweetalert2';
+
 import { Router } from "@angular/router"
 import { ConciliacionService } from '../../../../../Services/conciliacion.service';
-import { MaestroUtil } from '../../../../../Services/util/maestro-util';
 import { DateUtil } from '../../../../../Services/util/date-util';
 import { AlertUtil } from '../../../../../Services/util/alert-util';
-import { NotaSalidaAlmacenService } from '../../../../../Services/nota-salida-almacen.service';
 import { HeaderExcel } from '../../../../../Services/models/headerexcel.model';
 import { ExcelService } from '../../../../../shared/util/excel.service';
-import {AuthService} from './../../../../../Services/auth.service';
-import { number } from 'ngx-custom-validators/src/app/number/validator';
 
 @Component({
   selector: 'app-nota-salida',
@@ -23,14 +19,13 @@ import { number } from 'ngx-custom-validators/src/app/number/validator';
 export class NotaSalidaComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    private maestroUtil: MaestroUtil,
+    //private maestroUtil: MaestroUtil,
     private dateUtil: DateUtil,
     private spinner: NgxSpinnerService,
-    private notaSalidaService: NotaSalidaAlmacenService,
     private alertUtil: AlertUtil,
     private router: Router,
     private excelService: ExcelService,
-    private authService : AuthService,
+    //private authService : AuthService,
     private conciliacionService: ConciliacionService) { }
 
   notaSalidaForm: any;
@@ -77,7 +72,7 @@ export class NotaSalidaComponent implements OnInit {
     this.notaSalidaForm.controls['fechaFin'].setValue(this.dateUtil.currentDate());
     this.notaSalidaForm.controls['fechaInicio'].setValue(this.dateUtil.currentMonthAgo());
     this.vSessionUser = JSON.parse(localStorage.getItem('user'));
-    this.readonly= this.authService.esReadOnly(this.vSessionUser.Result.Data.OpcionesEscritura);
+    //this.readonly= this.authService.esReadOnly(this.vSessionUser.Result.Data.OpcionesEscritura);
   }
 
   get f() {
@@ -180,68 +175,8 @@ export class NotaSalidaComponent implements OnInit {
     }
   }
 
-  Anular(): void {
-    if (this.selected.length > 0) {
-      if (this.selected.length == 1) {
-        if (this.selected[0].EstadoId === "01") {
-          let form = this;
-          swal.fire({
-            title: '¿Estas seguro?',
-            text: `¿Está seguro de ANULAR la nota de salida "${this.selected[0].Numero}"?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#2F8BE6',
-            cancelButtonColor: '#F55252',
-            confirmButtonText: 'Si',
-            customClass: {
-              confirmButton: 'btn btn-primary',
-              cancelButton: 'btn btn-danger ml-1'
-            },
-            buttonsStyling: false,
-          }).then(function (result) {
-            if (result.value) {
-              form.AnularFila(form);
-            }
-          });
-        } else {
-          this.alertUtil.alertError("Validación", "Solo se puede anular los INGRESADOS.");
-        }
-      } else {
-        this.alertUtil.alertError("Validación", "Solo se puede anular de UNO en UNO.");
-      }
-    } else {
-      this.alertUtil.alertError("Validación", "No existen filas seleccionadas.");
-    }
-  }
-
-  AnularFila(form: any): void {
-    form.spinner.show();
-    this.notaSalidaService.Anular({
-      NotaSalidaAlmacenId: this.selected[0].NotaSalidaAlmacenId,
-      Usuario: this.vSessionUser.Result.Data.NombreUsuario
-    }).subscribe((res: any) => {
-      if (res.Result.Success) {
-        if (!res.Result.ErrCode) {
-          form.spinner.hide();
-          form.alertUtil.alertOk("Confirmación",
-            `La nota de salida ${form.selected[0].Numero} fue ANULADO correctamente.`);
-          form.Buscar();
-        } else if (res.Result.Message && res.Result.ErrCode) {
-          this.errorGeneral = { isError: true, errorMessage: res.Result.Message };
-        } else {
-          this.errorGeneral = { isError: true, errorMessage: this.mensajeErrorGenerico };
-        }
-      } else {
-        this.errorGeneral = { isError: true, errorMessage: this.mensajeErrorGenerico };
-      }
-    }, (err: any) => {
-      console.log(err);
-      form.spinner.hide();
-      this.errorGeneral = { isError: true, errorMessage: this.mensajeErrorGenerico };
-    });
-  }
-
-
+ 
+ 
 
   Export(): void {
     this.spinner.show();
@@ -256,7 +191,7 @@ export class NotaSalidaComponent implements OnInit {
       EmpresaId: this.vSessionUser.Result.Data.EmpresaId
     }
 
-    this.notaSalidaService.Consultar(request)
+    this.conciliacionService.Search(request)
       .subscribe(res => {
         this.spinner.hide();
         if (res.Result.Success) {

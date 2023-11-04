@@ -4,6 +4,6 @@ export const environment = {
   //  base_url: 'http://mruizb-002-site1.htempurl.com/api/'
  //base_url: 'http://mruizb-002-site3.htempurl.com/api/'
   
-base_url: 'http://172.31.4.119:8080/conciliacion/'
+base_url: 'http://172.31.6.163:30451/conciliacion/'
 
 };

@@ -36,11 +36,11 @@ export class LoginPageComponent {
   // On submit button click
   onSubmit() {
     this.loginFormSubmitted = true;
-    if (this.loginForm.invalid) {
-      this.router.navigate(['/home']);
-    }
+    //if (this.loginForm.invalid) {
+      this.router.navigate(['/conciliacion/list']);
+    //}
 
-    this.spinner.show(undefined,
+    /** this.spinner.show(undefined,
       {
         type: 'ball-triangle-path',
         size: 'medium',
@@ -49,7 +49,7 @@ export class LoginPageComponent {
         fullScreen: true
       });
 
-    /**this.authService.signinUser(this.loginForm.value.username, this.loginForm.value.password)
+   this.authService.signinUser(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(res => {
         this.spinner.hide();
         console.log(res);

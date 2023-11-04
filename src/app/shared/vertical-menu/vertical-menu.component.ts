@@ -8,9 +8,9 @@ import { HROUTES } from '../horizontal-menu/navigation-routes.config';
 import { Router } from "@angular/router";
 import { customAnimations } from "../animations/custom-animations";
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { ConfigService } from '../Services/config.service';
+import { ConfigService } from '../services/config.service';
 import { Subscription } from 'rxjs';
-import { LayoutService } from '../Services/layout.service';
+import { LayoutService } from '../services/layout.service';
 import { ILogin } from '../../Services/models/login';
 
 @Component({
@@ -47,7 +47,7 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.login = JSON.parse(localStorage.getItem("user"));
     this.menuItems = this.login.Result.Data.Opciones;
-    this.logoUrl = `assets/img/logo.png`;
+    this.logoUrl = `assets/img/logoOtraCooperativa.jpg`;
   }
 
   ngAfterViewInit() {

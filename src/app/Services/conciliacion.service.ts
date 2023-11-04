@@ -14,11 +14,10 @@ export class ConciliacionService {
   }
 
   private url = `${host}api`;
-  
 
-  Search(codigoComercio: String, autorizacion: String, fechaProceso : String): Observable<any> {
-    const url = `${this.url}/trxs?codigoComercio=${codigoComercio}&autorizacion=${autorizacion}&fechaProceso=${fechaProceso}`;
-    return this.http.get<any>(url).catch(this.errorHandling.handleError);
+  Search(request: any) {
+    let url = `${this.url}/trxs`;
+    return this.http.post<any>(url, request).catch(this.errorHandling.handleError)
   }
 
   

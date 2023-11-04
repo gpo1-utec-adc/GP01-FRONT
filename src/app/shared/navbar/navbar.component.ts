@@ -2,13 +2,13 @@ import { Component, Output, EventEmitter, OnDestroy, OnInit, AfterViewInit, Chan
 import { TranslateService , TranslationChangeEvent} from '@ngx-translate/core';
 import { LayoutService } from '../Services/layout.service';
 import { Subscription } from 'rxjs';
-import { ConfigService } from '../Services/config.service';
+import { ConfigService } from '../services/config.service';
 import { DOCUMENT } from '@angular/common';
-import { CustomizerService } from '../Services/customizer.service';
+import { CustomizerService } from '../services/customizer.service';
 import { FormControl } from '@angular/forms';
 import { LISTITEMS } from '../data/template-search';
 import { Router } from '@angular/router';
-import { ILogin } from '../../Services/models/login';
+import { ILogin } from '../../services/models/login';
 
 @Component({
   selector: "app-navbar",

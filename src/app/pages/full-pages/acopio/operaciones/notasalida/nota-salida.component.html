@@ -41,7 +41,26 @@
                                         *ngIf="errorFecha.isError">{{errorFecha.errorMessage}}</small>
                                 </div>
                             </div>
-                    
+                            <div class="form-row">
+                                <div class="col-md-4 mb-4 form-group mb-2">
+                        
+                                        <label for="estado" class="form-label">Estado</label>
+                                        <select formControlName="estado" class="form-control">
+                                          <option *ngFor="let estadoSelect of  estado" [value]="estadoSelect.id">
+                                           {{ estadoSelect.name}}
+                                          </option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4 mb-4 form-group mb-2">
+                                    <label for="estado" class="form-label">Estado</label>
+                                        <ng-select formControlName="estado" class="form-control">
+                                          <ng-option *ngFor="let estadoSelect of  estado" placeholder="Estado" [value]="estadoSelect.id">
+                                           {{ estadoSelect.name}}
+                                          </ng-option>
+                                        </ng-select>
+                                </div>
+                                
+                            </div>
 
                             <small class="form-text text-muted danger mb-1"
                                 *ngIf="errorGeneral.isError">{{errorGeneral.errorMessage}}</small>
@@ -104,41 +123,39 @@
 
                             <ngx-datatable-column name="Autorizacion" prop="autorizacion" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="CodVisanet" prop="codVisanet" width="150">
+                            <ngx-datatable-column name="CodVisanet" prop="codvisanet" width="150">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Codigo Comercio" prop="codigoComercio" width="150">
+                            <ngx-datatable-column name="Codigo Comercio" prop="codigocomercio" width="150">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="Codigo Mon" prop="codigoMonCodigoMon" width="150">
+                            <ngx-datatable-column name="Codigo Mon" prop="codigomon" width="150">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="comEmisor" prop="comEmisor" width="100">
+                            <ngx-datatable-column name="comEmisor" prop="comemisor" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="comMerchant" prop="comMerchant" width="150">
+                            <ngx-datatable-column name="comMerchant" prop="commerchant" width="150">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="comTotal" prop="comTotal" width="100">
+                            <ngx-datatable-column name="comTotal" prop="comtotal" width="100">
                             </ngx-datatable-column>
                             <ngx-datatable-column name="emisor" prop="emisor" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="comTotal" prop="comTotal" width="100">
+                            <ngx-datatable-column name="fechaAbono" prop="fechaabono" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="fechaAbono" prop="fechaAbono" width="100">
+                            <ngx-datatable-column name="fechaOperacion" prop="fechaoperacion" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="fechaOperacion" prop="fechaOperacion" width="100">
+                            <ngx-datatable-column name="fechaProceso" prop="fechaproceso" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="fechaProceso" prop="fechaProceso" width="100">
+                            <ngx-datatable-column name="horaOperacion" prop="horaoperacion" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="horaOperacion" prop="horaOperacion" width="100">
+                            <ngx-datatable-column name="importeBruto" prop="importebruto" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="importeBruto" prop="importeBruto" width="100">
+                            <ngx-datatable-column name="importeNeto" prop="importeneto" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="importeNeto" prop="importeNeto" width="100">
-                            </ngx-datatable-column>
-                            <ngx-datatable-column name="numeroReferencia" prop="numeroReferencia" width="100">
+                            <ngx-datatable-column name="numeroReferencia" prop="numeroreferencia" width="100">
                             </ngx-datatable-column>
                             <ngx-datatable-column name="ruc" prop="ruc" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="tarjetaMask" prop="tarjetaMask" width="100">
+                            <ngx-datatable-column name="tarjetaMask" prop="tarjetamask" width="100">
                             </ngx-datatable-column>
-                            <ngx-datatable-column name="tipoOperacion" prop="tipoOperacion" width="100">
+                            <ngx-datatable-column name="tipoOperacion" prop="tipooperacion" width="100">
                             </ngx-datatable-column>
                         </ngx-datatable>
                     </div>

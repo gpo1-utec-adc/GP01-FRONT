@@ -57,6 +57,20 @@ export class NotaSalidaComponent implements OnInit {
   vSessionUser: any;
   readonly: boolean;
 
+  estado : any = [
+    {
+       id: 1,
+       name:"DEVOLUCION TOTAL",       
+       checked: false
+    },
+    {
+      id: 2,
+      name:"DEVOLUCION PARCIAL",
+      content: "2",
+      checked: true
+    }
+     ]
+
   ngOnInit(): void {
     this.LoadForm();
     //this.LoadCombos();
@@ -76,6 +90,7 @@ export class NotaSalidaComponent implements OnInit {
       autorizacion: [],
       fechaInicio: [, [Validators.required]],
       fechaFin: [,],
+      estado: ['']
 
     });
     this.notaSalidaForm.setValidators(this.comparisonValidator());
@@ -139,12 +154,19 @@ export class NotaSalidaComponent implements OnInit {
         var codigoComercio = "4031607";//this.notaSalidaForm.value.codigoComercio;
         var autorizacion = "121158";//this.notaSalidaForm.value.autorizacion;
         var fechaInicio  = "2024-05-05";
+        var request = 
+        {
+            "autorizacion": "241967",
+            "codigoComercio": "4742886",
+            "estado": "ABONADO",
+            "estadoDevolucion": "DEVOLUCION TOTAL",
+            "fechaProceso": "2023-08-21"
+        }
        
-      
 
       this.spinner.show();
 
-      this.conciliacionService.Search(codigoComercio, autorizacion, fechaInicio)
+      this.conciliacionService.Search(request)
         .subscribe(res => {
           this.spinner.hide();
           this.tempData = res;

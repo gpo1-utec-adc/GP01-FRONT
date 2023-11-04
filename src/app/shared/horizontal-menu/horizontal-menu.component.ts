@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { HROUTES } from './navigation-routes.config';
-import { LayoutService } from '../Services/layout.service';
-import { ConfigService } from '../Services/config.service';
+import { LayoutService } from '../services/layout.service';
+import { ConfigService } from '../services/config.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 

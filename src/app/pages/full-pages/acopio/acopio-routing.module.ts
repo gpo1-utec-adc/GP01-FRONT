@@ -25,7 +25,7 @@ import { NotaSalidaComponent } from './operaciones/notasalida/nota-salida.compon
 
 const routes: Routes = [
   {
-    path: 'operaciones',
+    path: 'conciliacion',
     children: [
     /**  {
         path: 'guiarecepcionmateriaprima-list',
@@ -70,10 +70,10 @@ const routes: Routes = [
         }
       },**/
       {
-        path: 'notasalida-list',
+        path: 'list',
         component: NotaSalidaComponent,
         data: {
-          title: 'Nota de salida'
+          title: 'Conciliacion'
         }
       },
       /**{

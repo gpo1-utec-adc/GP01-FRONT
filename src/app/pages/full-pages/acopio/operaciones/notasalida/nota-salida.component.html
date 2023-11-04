@@ -44,20 +44,20 @@
                             <div class="form-row">
                                 <div class="col-md-4 mb-4 form-group mb-2">
                         
-                                        <label for="estado" class="form-label">Estado</label>
-                                        <select formControlName="estado" class="form-control">
-                                          <option *ngFor="let estadoSelect of  estado" [value]="estadoSelect.id">
-                                           {{ estadoSelect.name}}
-                                          </option>
-                                        </select>
+                                        <label for="estado" class="form-label">Estado Devolucion</label>
+                                        <ng-select [items]="estadoDevolucion" formControlName="estadoDevolucion" class="form-control"
+                                        bindLabel="name" bindValue="id" id="almacen" placeholder="Estado Devolucion"
+                                        [ngClass]="{ 'is-invalid': submitted && f.estadoDevolucion.invalid, 'is-valid': submitted && !f.estadoDevolucion.invalid }"
+                                        [(ngModel)]="selecteEstadoDev">
+                                        </ng-select>
                                 </div>
                                 <div class="col-md-4 mb-4 form-group mb-2">
                                     <label for="estado" class="form-label">Estado</label>
-                                        <ng-select formControlName="estado" class="form-control">
-                                          <ng-option *ngFor="let estadoSelect of  estado" placeholder="Estado" [value]="estadoSelect.id">
-                                           {{ estadoSelect.name}}
-                                          </ng-option>
-                                        </ng-select>
+                                        <ng-select [items]="estado" formControlName="estado" class="form-control"
+                                        bindLabel="name" bindValue="id" id="estado" placeholder="Estado"
+                                        [ngClass]="{ 'is-invalid': submitted && f.estado.invalid, 'is-valid': submitted && !f.estado.invalid }"
+                                        [(ngModel)]="selecteEstado">
+                                    </ng-select>
                                 </div>
                                 
                             </div>

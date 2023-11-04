@@ -36,8 +36,8 @@ export class NotaSalidaComponent implements OnInit {
   listEstados: [] = [];
   selectedDestinatario: any;
   selectedTransportista: any;
-  selectedAlmacen: any;
-  selectedMotivo: any;
+  selecteEstadoDev: any;
+  selecteEstado: any;
   selectedEstado: any;
   error: any = { isError: false, errorMessage: '' };
   errorGeneral: any = { isError: false, errorMessage: '' };
@@ -52,19 +52,45 @@ export class NotaSalidaComponent implements OnInit {
   vSessionUser: any;
   readonly: boolean;
 
-  estado : any = [
+  estadoDevolucion : any = [
     {
        id: 1,
-       name:"DEVOLUCION TOTAL",       
-       checked: false
+       name:"RETENIDO",       
+       checked: true
     },
     {
       id: 2,
-      name:"DEVOLUCION PARCIAL",
+      name:"CONTRACARGADO",
       content: "2",
-      checked: true
+      checked: false
+    },
+    {
+      id: 3,
+      name:"PENDIENTE",
+      content: "3",
+      checked: false
+    },
+    {
+      id: 4,
+      name:"ABONADO",
+      content: "4",
+      checked: false
     }
      ]
+
+     estado : any = [
+      {
+         id: 1,
+         name:"DEVOLUCION TOTAL",       
+         checked: false
+      },
+      {
+        id: 2,
+        name:"DEVOLUCION PARCIAL",
+        content: "2",
+        checked: true
+      }
+       ]
 
   ngOnInit(): void {
     this.LoadForm();

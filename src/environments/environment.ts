@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   
- base_url: 'http://ip-172-31-6-163.us-east-2.compute.internal:30451/conciliacion/'
+ base_url: 'http://172.31.6.163:30451/conciliacion/'
   
 
  //base_url: 'http://mruizb-003-site2.htempurl.com/api/'

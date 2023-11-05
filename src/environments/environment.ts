@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   
- base_url: 'http://172.31.6.163:30451/conciliacion/'
+ base_url: 'https://ftcetc9jo1.execute-api.us-east-2.amazonaws.com/conciliacion/'
   
 
  //base_url: 'http://mruizb-003-site2.htempurl.com/api/'

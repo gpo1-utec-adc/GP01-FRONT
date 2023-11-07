@@ -34,14 +34,18 @@ jobs:
           git pull origin main
     
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd /home/ubuntu/GP01-FRONT
+        npm install
 
     - name: Build Angular App
-      run: npm run build
+      run: |
+        cd /home/ubuntu/GP01-FRONT
+        npm run build
 
     - name: Deploy on Server Front EC2
       run: |
-        [ -d /ruta/al/directorio ] && \
+        [ -d cd /home/ubuntu/GP01-FRONT/dist/CoffeeConnectFront ] && \
         echo "El directorio CoffeeConnectFront existe" && \
         sudo cp -r dist/* /usr/share/nginx/html/ && \
         sudo service nginx restart \

@@ -53,7 +53,7 @@ jobs:
           cd /home/ubuntu/GP01-FRONT
           npm run build
 
-    - name: Deploy on Server Front Nginx - EC2
+    - name: Deploying on Server Front Nginx - EC2
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST_IP }}
@@ -61,11 +61,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd /home/ubuntu/GP01-FRONT/
-          [ -d /home/ubuntu/GP01-FRONT/dist/CoffeeConnectFront ] && \
-          echo "El directorio CoffeeConnectFront existe" && \
-          sudo cp -r dist/* /usr/share/nginx/html/ && \
-          sudo service nginx restart \
-          || echo "El directorio CoffeeConnectFront no existe"
+          sudo cp -r dist/* /usr/share/nginx/html/
+          sudo service nginx reload
+          sudo service nginx restart
           
     - name: Clean up
       uses: appleboy/ssh-action@master

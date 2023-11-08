@@ -61,7 +61,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd /home/ubuntu/GP01-FRONT/
-          sudo cp -r dist/* /usr/share/nginx/html/
+          sudo rsync -a --delete dist/* /usr/share/nginx/html/
           sudo service nginx reload
           sudo service nginx restart
           

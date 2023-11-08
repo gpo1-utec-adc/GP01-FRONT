@@ -60,11 +60,12 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          [ -d cd /home/ubuntu/GP01-FRONT/dist/CoffeeConnectFront ] && \
+          cd /home/ubuntu/GP01-FRONT/
+          [ -d /home/ubuntu/GP01-FRONT/dist/CoffeeConnectFront ] && \
           echo "El directorio CoffeeConnectFront existe" && \
           sudo cp -r dist/* /usr/share/nginx/html/ && \
           sudo service nginx restart \
-          || echo "El directorio CoffeeConnectFront no existe" &&\
+          || echo "El directorio CoffeeConnectFront no existe"
           
     - name: Clean up
       uses: appleboy/ssh-action@master

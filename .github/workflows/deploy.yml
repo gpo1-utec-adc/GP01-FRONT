@@ -32,18 +32,47 @@ jobs:
           cd /home/ubuntu/GP01-FRONT
           git stash
           git pull origin main
-          echo "Install dependencies"
+
+    - name: Install dependencies
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
           npm install
-          echo "Build Angular App"
+
+    - name: Build Angular Web Aplication
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/ubuntu/GP01-FRONT
           npm run build
-          echo "Deploy on Server Front EC2"
+
+    - name: Deploy on Server Front Nginx - EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
           [ -d cd /home/ubuntu/GP01-FRONT/dist/CoffeeConnectFront ] && \
           echo "El directorio CoffeeConnectFront existe" && \
           sudo cp -r dist/* /usr/share/nginx/html/ && \
           sudo service nginx restart \
           || echo "El directorio CoffeeConnectFront no existe" &&\
-          echo "Revisar step anterior"
-          echo "Clean up"
+          
+    - name: Clean up
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ubuntu
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/ubuntu/GP01-FRONT
           rm -rf dist/*
 
     - name: Remove Github Actions IP from security group

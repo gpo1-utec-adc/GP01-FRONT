@@ -39,7 +39,7 @@ export class NotaSalidaComponent implements OnInit {
   vSessionUser: any;
   readonly: boolean;
 
-  estadoDevolucion : any = [
+  estado : any = [
     {
        id: 1,
        name:"RETENIDO",       
@@ -65,7 +65,7 @@ export class NotaSalidaComponent implements OnInit {
     }
      ]
 
-     estado : any = [
+     estadoDevolucion : any = [
       {
          id: 1,
          name:"DEVOLUCION TOTAL",       

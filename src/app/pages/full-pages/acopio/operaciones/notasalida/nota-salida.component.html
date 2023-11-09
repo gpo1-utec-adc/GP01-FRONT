@@ -26,17 +26,23 @@
                                         letras y números</small>
                                 </div>
                                 <div class="col-md-4 mb-4 form-group mb-2">
-                                    <label for="destinatario" class="form-label">Autorizacion</label>
+                                    <label for="autorizacion" class="form-label">Autorizacion</label>
                                     <input type="text" minlength="5" maxlength="50" formControlName="autorizacion"
                                         class="form-control" id="autorizacion" placeholder="Autorizacion"
                                         [ngClass]="{ 'is-invalid': submitted && f.autorizacion.invalid, 'is-valid': submitted &&  !f.autorizacion.invalid }">
+                                        <small class="form-text text-muted danger"
+                                        *ngIf="f.autorizacion.errors?.minlength">Ingrese 5 a 50 letras</small>
+                                    <small class="form-text text-muted danger"
+                                        *ngIf="f.autorizacion.errors?.maxlength">Ingrese 5 a 50 letras</small>
+                                    <small class="form-text text-muted danger"
+                                        *ngIf="f.autorizacion.errors?.pattern">Solo
+                                        letras y números</small>
                                 </div>
                                 <div class="col-md-4 mb-4 form-group mb-2">
-                                    <label for="fechaInicio" class="form-label">Fecha Proceso</label>
-                                    <input type="date" class="form-control" formControlName="fechaInicio"
-                                        id="fechaInicio" name="fechaInicio" placeholder="date" date
-                                        [ngClass]="{ 'is-invalid': submitted && f.fechaInicio.invalid, 'is-valid': submitted && !f.fechaInicio.invalid }"
-                                        (blur)="compareTwoDates()" />
+                                    <label for="fechaProceso" class="form-label">Fecha Proceso</label>
+                                    <input type="date" class="form-control" formControlName="fechaProceso"
+                                        id="fechaProceso" name="fechaProceso" placeholder="date" date
+                                        [ngClass]="{ 'is-invalid': submitted && f.fechaProceso.invalid, 'is-valid': submitted && !f.fechaProceso.invalid }"/>
                                     <small class="form-text text-muted danger"
                                         *ngIf="errorFecha.isError">{{errorFecha.errorMessage}}</small>
                                 </div>
@@ -48,7 +54,7 @@
                                         <ng-select [items]="estadoDevolucion" formControlName="estadoDevolucion" class="form-control"
                                         bindLabel="name" bindValue="id" id="almacen" placeholder="Estado Devolucion"
                                         [ngClass]="{ 'is-invalid': submitted && f.estadoDevolucion.invalid, 'is-valid': submitted && !f.estadoDevolucion.invalid }"
-                                        [(ngModel)]="selecteEstadoDev">
+                                        [(ngModel)]="selectEstadoDev">
                                         </ng-select>
                                 </div>
                                 <div class="col-md-4 mb-4 form-group mb-2">
@@ -56,7 +62,7 @@
                                         <ng-select [items]="estado" formControlName="estado" class="form-control"
                                         bindLabel="name" bindValue="id" id="estado" placeholder="Estado"
                                         [ngClass]="{ 'is-invalid': submitted && f.estado.invalid, 'is-valid': submitted && !f.estado.invalid }"
-                                        [(ngModel)]="selecteEstado">
+                                        [(ngModel)]="selectEstado">
                                     </ng-select>
                                 </div>
                                 

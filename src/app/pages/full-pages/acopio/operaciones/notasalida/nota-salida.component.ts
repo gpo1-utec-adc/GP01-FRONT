@@ -3,12 +3,11 @@ import { FormBuilder, Validators, FormGroup, ValidatorFn, ValidationErrors } fro
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 
-import { Router } from "@angular/router"
 import { ConciliacionService } from '../../../../../Services/conciliacion.service';
 import { DateUtil } from '../../../../../Services/util/date-util';
-import { AlertUtil } from '../../../../../Services/util/alert-util';
 import { HeaderExcel } from '../../../../../Services/models/headerexcel.model';
 import { ExcelService } from '../../../../../shared/util/excel.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nota-salida',
@@ -19,26 +18,14 @@ import { ExcelService } from '../../../../../shared/util/excel.service';
 export class NotaSalidaComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-    //private maestroUtil: MaestroUtil,
     private dateUtil: DateUtil,
     private spinner: NgxSpinnerService,
-    private alertUtil: AlertUtil,
-    private router: Router,
     private excelService: ExcelService,
-    //private authService : AuthService,
     private conciliacionService: ConciliacionService) { }
 
   notaSalidaForm: any;
-  listDestinatarios: [] = [];
-  listTransportistas: [] = [];
-  listAlmacenes: [] = [];
-  listMotivos: [] = [];
-  listEstados: [] = [];
-  selectedDestinatario: any;
-  selectedTransportista: any;
-  selecteEstadoDev: any;
-  selecteEstado: any;
-  selectedEstado: any;
+  selectEstadoDev: any;
+  selectEstado: any;
   error: any = { isError: false, errorMessage: '' };
   errorGeneral: any = { isError: false, errorMessage: '' };
   mensajeErrorGenerico: string = "Ocurrio un error interno.";
@@ -94,11 +81,6 @@ export class NotaSalidaComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoadForm();
-    //this.LoadCombos();
-    this.notaSalidaForm.controls['fechaFin'].setValue(this.dateUtil.currentDate());
-    this.notaSalidaForm.controls['fechaInicio'].setValue(this.dateUtil.currentMonthAgo());
-    this.vSessionUser = JSON.parse(localStorage.getItem('user'));
-    //this.readonly= this.authService.esReadOnly(this.vSessionUser.Result.Data.OpcionesEscritura);
   }
 
   get f() {
@@ -107,11 +89,12 @@ export class NotaSalidaComponent implements OnInit {
 
   LoadForm(): void {
     this.notaSalidaForm = this.fb.group({
+      estadoDevolucion: [, [Validators.required]],
+      estado: [, [Validators.required]],
       codigoComercio: ['', [Validators.minLength(5), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
-      autorizacion: [],
-      fechaInicio: [, [Validators.required]],
-      fechaFin: [,],
-      estado: ['']
+      autorizacion: ['', [Validators.minLength(5), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+      fechaProceso: [, [Validators.required]]
+      
 
     });
     this.notaSalidaForm.setValidators(this.comparisonValidator());
@@ -119,8 +102,12 @@ export class NotaSalidaComponent implements OnInit {
 
   comparisonValidator(): ValidatorFn {
     return (group: FormGroup): ValidationErrors => {
-      if (!group.value.fechaInicio) {
+      if (!group.value.fechaProceso) {
         this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione una fecha de Proceso.' };
+      }else if (!group.value.estadoDevolucion) {
+        this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione un estado de devolucion.' };
+      } else if (!group.value.estado) {
+        this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione un estado.' };
       } else {
         this.errorGeneral = { isError: false, errorMessage: '' };
       }
@@ -172,16 +159,13 @@ export class NotaSalidaComponent implements OnInit {
       this.selected = [];
       this.submitted = false;
       
-        var codigoComercio = "4031607";//this.notaSalidaForm.value.codigoComercio;
-        var autorizacion = "121158";//this.notaSalidaForm.value.autorizacion;
-        var fechaInicio  = "2024-05-05";
         var request = 
         {
-            "autorizacion": "241967",
-            "codigoComercio": "4742886",
-            "estado": "ABONADO",
-            "estadoDevolucion": "DEVOLUCION TOTAL",
-            "fechaProceso": "2023-08-21"
+            "autorizacion": this.notaSalidaForm.value.autorizacion == '' ? null : this.notaSalidaForm.value.autorizacion,
+            "codigoComercio": this.notaSalidaForm.value.codigoComercio == '' ? null : this.notaSalidaForm.value.codigoComercio,
+            "estado": this.obtenerDescriptionEstado(this.notaSalidaForm.value.estado),
+            "estadoDevolucion": this.obtenerDescriptionEstadoDevolucion(this.notaSalidaForm.value.estadoDevolucion), 
+            "fechaProceso":  this.notaSalidaForm.value.fechaProceso
         }
        
 
@@ -199,6 +183,16 @@ export class NotaSalidaComponent implements OnInit {
         }
         );
     }
+  }
+
+  obtenerDescriptionEstadoDevolucion(id : any){
+    const select = this.estadoDevolucion.filter(x => x.id == id);
+    return select[0].name;
+  }
+
+  obtenerDescriptionEstado(id : any){
+    const select = this.estado.filter(x => x.id == id);
+    return select[0].name;
   }
 
  

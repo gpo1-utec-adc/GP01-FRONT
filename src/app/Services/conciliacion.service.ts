@@ -15,9 +15,11 @@ export class ConciliacionService {
 
   private url = `${host}api`;
 
-  Search(request: any) {
-    let url = `${this.url}/trxs`;
-    return this.http.post<any>(url, request).catch(this.errorHandling.handleError)
+
+
+  Search(autorizacion: any, codigoComercio: any,estado: any,estadoDevolucion: any,fechaProcesoInicio: any,fechaProcesoFin: any) {
+    let url = `${this.url}/trxs?codigoComercio=${codigoComercio}&autorizacion${autorizacion}=&estado=${estado}&estadoDevolucion=${estadoDevolucion}&fechaProcesoInicio=${fechaProcesoInicio}&fechaProcesoFin=${fechaProcesoFin}`;
+    return this.http.get<any>(url).catch(this.errorHandling.handleError)
   }
 
   

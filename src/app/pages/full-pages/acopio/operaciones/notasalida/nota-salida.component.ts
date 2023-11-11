@@ -93,7 +93,8 @@ export class NotaSalidaComponent implements OnInit {
       estado: [, [Validators.required]],
       codigoComercio: ['', [Validators.minLength(5), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
       autorizacion: ['', [Validators.minLength(5), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
-      fechaProceso: [, [Validators.required]]
+      fechaProcesoInicio: [, [Validators.required]],
+      fechaProcesoFin: [, [Validators.required]]
       
 
     });
@@ -102,8 +103,10 @@ export class NotaSalidaComponent implements OnInit {
 
   comparisonValidator(): ValidatorFn {
     return (group: FormGroup): ValidationErrors => {
-      if (!group.value.fechaProceso) {
-        this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione una fecha de Proceso.' };
+      if (!group.value.fechaProcesoInicio) {
+        this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione una fecha de Proceso Inicio.' };
+      }else if (!group.value.fechaProcesoFin) {
+        this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione una fecha de Proceso Fin.' };
       }else if (!group.value.estadoDevolucion) {
         this.errorGeneral = { isError: true, errorMessage: 'Por favor seleccione un estado de devolucion.' };
       } else if (!group.value.estado) {
@@ -117,8 +120,8 @@ export class NotaSalidaComponent implements OnInit {
 
 
   compareTwoDates(): void {
-    let vBeginDate = new Date(this.notaSalidaForm.value.fechaInicio);
-    let vEndDate = new Date(this.notaSalidaForm.value.fechaFin);
+    let vBeginDate = new Date(this.notaSalidaForm.value.fechaProcesoInicio);
+    let vEndDate = new Date(this.notaSalidaForm.value.fechaProcesoFin);
 
     var anioFechaInicio = vBeginDate.getFullYear()
     var anioFechaFin = vEndDate.getFullYear()
@@ -159,19 +162,19 @@ export class NotaSalidaComponent implements OnInit {
       this.selected = [];
       this.submitted = false;
       
-        var request = 
-        {
-            "autorizacion": this.notaSalidaForm.value.autorizacion == '' ? null : this.notaSalidaForm.value.autorizacion,
-            "codigoComercio": this.notaSalidaForm.value.codigoComercio == '' ? null : this.notaSalidaForm.value.codigoComercio,
-            "estado": this.obtenerDescriptionEstado(this.notaSalidaForm.value.estado),
-            "estadoDevolucion": this.obtenerDescriptionEstadoDevolucion(this.notaSalidaForm.value.estadoDevolucion), 
-            "fechaProceso":  this.notaSalidaForm.value.fechaProceso
-        }
+
+          var  autorizacion =  this.notaSalidaForm.value.autorizacion;
+          var codigoComercio =  this.notaSalidaForm.value.codigoComercio;
+          var estado =  this.obtenerDescriptionEstado(this.notaSalidaForm.value.estado);
+          var estadoDevolucion =  this.obtenerDescriptionEstadoDevolucion(this.notaSalidaForm.value.estadoDevolucion);
+          var fechaProcesoInicio =  this.notaSalidaForm.value.fechaProcesoInicio;
+          var fechaProcesoFin =   this.notaSalidaForm.value.fechaProcesoFin;
+
        
 
       this.spinner.show();
 
-      this.conciliacionService.Search(request)
+      this.conciliacionService.Search(autorizacion, codigoComercio,estado,estadoDevolucion,fechaProcesoInicio,fechaProcesoFin)
         .subscribe(res => {
           this.spinner.hide();
           this.tempData = res;
@@ -211,7 +214,7 @@ export class NotaSalidaComponent implements OnInit {
       EmpresaId: this.vSessionUser.Result.Data.EmpresaId
     }
 
-    this.conciliacionService.Search(request)
+   /** this.conciliacionService.Search(request)
       .subscribe(res => {
         this.spinner.hide();
         if (res.Result.Success) {
@@ -254,7 +257,7 @@ export class NotaSalidaComponent implements OnInit {
           console.error(err);
           this.errorGeneral = { isError: true, errorMessage: this.mensajeErrorGenerico };
         }
-      );
+      );**/
   }
 
 }

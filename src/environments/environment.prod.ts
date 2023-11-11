@@ -6,4 +6,6 @@ export const environment = {
   
 base_url: 'https://ftcetc9jo1.execute-api.us-east-2.amazonaws.com/conciliacion/'
 
+//base_url: 'http://localhost:8080/conciliacion/'
+
 };

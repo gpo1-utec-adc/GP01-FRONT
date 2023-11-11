@@ -26,6 +26,25 @@
                                         letras y números</small>
                                 </div>
                                 <div class="col-md-4 mb-4 form-group mb-2">
+                                    <label for="fechaProcesoInicio" class="form-label">Fecha Proceso Inicio</label>
+                                    <input type="date" class="form-control" formControlName="fechaProcesoInicio"
+                                        id="fechaProcesoInicio" name="fechaProcesoInicio" placeholder="date" date
+                                        [ngClass]="{ 'is-invalid': submitted && f.fechaProcesoInicio.invalid, 'is-valid': submitted && !f.fechaProcesoInicio.invalid }"/>
+                                    <small class="form-text text-muted danger"
+                                        *ngIf="errorFecha.isError">{{errorFecha.errorMessage}}</small>
+                                </div>
+                                
+                                <div class="col-md-4 mb-4 form-group mb-2">
+                                    <label for="fechaProcesoFin" class="form-label">Fecha Proceso Fin</label>
+                                    <input type="date" class="form-control" formControlName="fechaProcesoFin"
+                                        id="fechaProcesoFin" name="fechaProcesoFin" placeholder="date" date
+                                        [ngClass]="{ 'is-invalid': submitted && f.fechaProcesoFin.invalid, 'is-valid': submitted && !f.fechaProcesoFin.invalid }"/>
+                                    <small class="form-text text-muted danger"
+                                        *ngIf="errorFecha.isError">{{errorFecha.errorMessage}}</small>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-4 form-group mb-2">
                                     <label for="autorizacion" class="form-label">Autorizacion</label>
                                     <input type="text" minlength="5" maxlength="50" formControlName="autorizacion"
                                         class="form-control" id="autorizacion" placeholder="Autorizacion"
@@ -38,16 +57,6 @@
                                         *ngIf="f.autorizacion.errors?.pattern">Solo
                                         letras y números</small>
                                 </div>
-                                <div class="col-md-4 mb-4 form-group mb-2">
-                                    <label for="fechaProceso" class="form-label">Fecha Proceso</label>
-                                    <input type="date" class="form-control" formControlName="fechaProceso"
-                                        id="fechaProceso" name="fechaProceso" placeholder="date" date
-                                        [ngClass]="{ 'is-invalid': submitted && f.fechaProceso.invalid, 'is-valid': submitted && !f.fechaProceso.invalid }"/>
-                                    <small class="form-text text-muted danger"
-                                        *ngIf="errorFecha.isError">{{errorFecha.errorMessage}}</small>
-                                </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="col-md-4 mb-4 form-group mb-2">
                         
                                         <label for="estado" class="form-label">Estado Devolucion</label>
